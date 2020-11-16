@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block title%}
+<title>Posts</title>
+{%endblock%}
+
+{%block body%}
+<h1>Posts Page</h1>
+
+<hr>
+<h2>Create a new post:</h2>
+<form action="/posts" method="POST">
+    Title : <input type="text" name="title" id="title">
+    <br>
+    Post : <input type="text" name="content" id="content">
+    <br>
+    <input type="submit" value="Post">
+</form>
+<hr>
+
+
+{%for post in posts%}
+<h3>{{ post.title }}</h3>
+{%if post.author%}
+<h5>By: {{post.author}}</h5>
+{%else%}
+<h5>By: N/A</h5>
+{%endif%}
+
+<p>{{ post.content }}</p>
+{%endfor%}
+
+{%endblock%}
