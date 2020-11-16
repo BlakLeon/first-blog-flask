@@ -10,24 +10,36 @@
 <hr>
 <h2>Create a new post:</h2>
 <form action="/posts" method="POST">
-    Title : <input type="text" name="title" id="title">
+    Author  <input class="form-control" type="text" placeholder="Enter Author" name="author" id="author">
     <br>
-    Post : <input type="text" name="content" id="content">
+    Title  <input class="form-control" type="text" placeholder="Enter Title" name="title" id="title">
     <br>
-    <input type="submit" value="Post">
+    Post  <input class="form-control" type="textarea" placeholder="Enter Content" name="content" id="content">
+    <br>
+    <input class="btn btn-success" type="submit" value="Post">
 </form>
 <hr>
 
 
 {%for post in posts%}
+<br>
 <h3>{{ post.title }}</h3>
 {%if post.author%}
-<h5>By: {{post.author}}</h5>
+<small>Written by: {{post.author}} on {{post.date_posted}}</small>
+<br>
+<br>
 {%else%}
 <h5>By: N/A</h5>
+<br><br>
 {%endif%}
 
 <p>{{ post.content }}</p>
+
+<a class="btn btn-danger" href="/posts/delete/{{post.id}}">Delete</a>
+<a class="btn btn-primary" href="/posts/edit/{{post.id}}">Edit</a>
+<hr>
 {%endfor%}
 
 {%endblock%}
+
+
